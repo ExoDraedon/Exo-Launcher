@@ -8,7 +8,6 @@
 }
 
 body {
-    background: #000000;
     color: white;
     overflow: hidden;
     height: 100vh;
@@ -26,9 +25,43 @@ body {
     justify-content: space-between;
 }
 
+/* Fondo dinámico */
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../media/backgrounds/bg1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.8s ease;
+    z-index: -1;
+}
+
+/* Capa oscura semi-transparente - MENOS OSCURA */
+#background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Reducida opacidad de 0.6 a 0.4 */
+    z-index: 1;
+    transition: background 0.8s ease; /* Transición suave para cambios de opacidad */
+}
+
+/* Estado de transición - fondo se oscurece temporalmente */
+#background.transitioning::after {
+    background: rgba(0, 0, 0, 0.8); /* Más oscuro durante la transición */
+}
+
 /* Encabezado */
 header {
     padding: 20px 40px;
+    z-index: 10;
 }
 
 .header-content {
@@ -51,8 +84,8 @@ header {
 }
 
 .studio-icon {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
@@ -63,10 +96,10 @@ header {
 }
 
 .studio-icon img {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-    filter: brightness(0.9);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .version {
@@ -81,6 +114,7 @@ header {
     flex: 1;
     padding: 0 40px;
     align-items: center;
+    z-index: 10;
 }
 
 /* Barra lateral de iconos */
@@ -88,11 +122,12 @@ header {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    z-index: 10;
 }
 
 .icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
@@ -102,13 +137,14 @@ header {
     transition: all 0.3s ease;
     border: 2px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
+    transform: translateX(0);
 }
 
 .icon img {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-    filter: brightness(0.9);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .icon:hover {
@@ -117,11 +153,18 @@ header {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
+.icon.active {
+    transform: translateX(15px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
 /* Pie de página con botón jugar */
 footer {
     display: flex;
     justify-content: center;
     padding: 30px;
+    z-index: 10;
 }
 
 .play-button {
