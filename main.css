@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
+:root {
+    --glass-glow: rgba(100, 100, 255, 0.1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,40 +30,23 @@ body {
     justify-content: space-between;
 }
 
-/* Fondo dinámico con animación de pulso */
+/* Fondo dinámico sin animación de pulso */
 #background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../media/backgrounds/bg1.png');
+    background-image: url('backgrounds/bg1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: opacity 0.5s ease;
     z-index: -1;
     opacity: 1;
-    animation: bgPulse 8s ease-in-out infinite;
 }
 
-/* Animación de pulso que depende del fondo */
-@keyframes bgPulse {
-    0% {
-        filter: brightness(1) saturate(1);
-        transform: scale(1);
-    }
-    50% {
-        filter: brightness(1.1) saturate(1.1);
-        transform: scale(1.01);
-    }
-    100% {
-        filter: brightness(1) saturate(1);
-        transform: scale(1);
-    }
-}
-
-/* Efecto de vidrio para el panel lateral */
+/* Efecto de vidrio con iluminación pulsante para el panel lateral */
 .sidebar-background {
     position: absolute;
     left: 0;
@@ -71,6 +58,7 @@ body {
     -webkit-backdrop-filter: blur(15px);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 5;
+    animation: glassPulse 6s ease-in-out infinite;
 }
 
 /* Encabezado */
@@ -143,6 +131,7 @@ header {
     transform: translateX(0);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    animation: glassPulse 6s ease-in-out infinite;
 }
 
 .icon img {
@@ -172,7 +161,7 @@ footer {
     z-index: 10;
 }
 
-/* Botón Play mejorado - Más ancho, menos alto con efecto vidrio */
+/* Botón Play mejorado con efecto de vidrio pulsante */
 .play-button {
     background: rgba(20, 20, 20, 0.7);
     border: 1.5px solid rgba(255, 255, 255, 0.25);
@@ -192,6 +181,7 @@ footer {
     -webkit-backdrop-filter: blur(15px);
     position: relative;
     overflow: hidden;
+    animation: glassPulse 6s ease-in-out infinite;
 }
 
 .play-button::before {
@@ -228,4 +218,23 @@ footer {
     box-shadow: 
         0 2px 15px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Animación de pulso para elementos de vidrio que refleja el fondo */
+@keyframes glassPulse {
+    0% {
+        box-shadow: 
+            inset 0 0 20px 0px var(--glass-glow),
+            0 0 10px 0px var(--glass-glow);
+    }
+    50% {
+        box-shadow: 
+            inset 0 0 30px 5px var(--glass-glow),
+            0 0 20px 5px var(--glass-glow);
+    }
+    100% {
+        box-shadow: 
+            inset 0 0 20px 0px var(--glass-glow),
+            0 0 10px 0px var(--glass-glow);
+    }
 }
