@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const playButton = document.querySelector('.play-button');
     const background = document.getElementById('background');
 
-    // ========== 🎮 FUNCIÓN PARA ABRIR MINECRAFT EN SERVIDORES ==========
+    // funcion para abrir mc en servers
     function openMinecraft() {
         const originalText = playButton.textContent;
         playButton.textContent = 'Starting...';
@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // ========== 🚨 FUNCIÓN DE ERROR ==========
+    // funcion error
     function showMinecraftError() {
         alert('Could not find Minecraft Bedrock.\n\nMake sure:\n• Minecraft Bedrock is installed\n• You are using Windows 10/11\n• The app is installed from Microsoft Store');
     }
 
-    // ========== 🌈 FUNCIÓN PARA CAMBIAR FONDO ==========
+    //funcion cambiar fondo
     function changeBackground(bgUrl) {
         // Solo cambiar si es una URL diferente
         if (background.style.backgroundImage !== `url('${bgUrl}')`) {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ========== 🖱️ EVENT LISTENERS PARA ICONOS ==========
+    // listener para iconos
     icons.forEach(icon => {
         icon.addEventListener('mouseenter', function() {
             if (!this.classList.contains('active')) {
@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ========== 🎯 EVENT LISTENER PARA EL BOTÓN DE PLAY ==========
+    // event listener abrir mc
     playButton.addEventListener('click', openMinecraft);
 });
+
